@@ -5,8 +5,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/glhaynes/OnscreenController/",
       "state" : {
-        "revision" : "6e32986496169be97350b672cb9253713566f911",
-        "version" : "1.0.0"
+        "branch" : "feature/addVisionOSSupport",
+        "revision" : "7ef98deafa74c0b8391a172932318b149f08ceb0"
       }
     },
     {

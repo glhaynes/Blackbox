@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 54;
+	objectVersion = 55;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -96,6 +96,7 @@
 		7192C50D2A1D953200B11D09 /* Accessories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7192C50C2A1D953200B11D09 /* Accessories.swift */; };
 		7192C50F2A1D99A800B11D09 /* VideoDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7192C50E2A1D99A800B11D09 /* VideoDisplay.swift */; };
 		7192C5132A1DAD3500B11D09 /* MacOSStubSizeClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7192C5122A1DAD3500B11D09 /* MacOSStubSizeClass.swift */; };
+		7195AA042A29B15900BB7724 /* OnscreenController in Frameworks */ = {isa = PBXBuildFile; platformFilters = (ios, xros, ); productRef = 7195AA032A29B15900BB7724 /* OnscreenController */; };
 		71977FC528DF99E700413D15 /* MaskRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71977FC428DF99E700413D15 /* MaskRegister.swift */; };
 		71977FC728DF99FF00413D15 /* StatusRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71977FC628DF99FF00413D15 /* StatusRegister.swift */; };
 		71977FC928DF9A1000413D15 /* LoopyRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71977FC828DF9A1000413D15 /* LoopyRegister.swift */; };
@@ -125,7 +126,7 @@
 		71B1122228E2C95C00FACD94 /* PPURegisterAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B1122128E2C95C00FACD94 /* PPURegisterAddress.swift */; };
 		71B99CE628BD658C00201549 /* M6502.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B99CE528BD658C00201549 /* M6502.swift */; };
 		71CD7CFA23941537001713C9 /* ProcessorState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CD7CF923941537001713C9 /* ProcessorState.swift */; };
-		71CEBD892A05B6D2009047C4 /* CoreBlackbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7169876F2390ECE9003757CA /* CoreBlackbox.framework */; };
+		71CEBD892A05B6D2009047C4 /* CoreBlackbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7169876F2390ECE9003757CA /* CoreBlackbox.framework */; platformFilters = (ios, macos, xros, ); };
 		71CEBDE12A05FF76009047C4 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CEBDE02A05FF76009047C4 /* AboutView.swift */; };
 		71CEBDE32A0602C4009047C4 /* example.nes in Resources */ = {isa = PBXBuildFile; fileRef = 71CEBDE22A0602C4009047C4 /* example.nes */; };
 		71D27C2128E1946C00A6D6D5 /* PPU Memory Map.txt in Resources */ = {isa = PBXBuildFile; fileRef = 71D27C2028E1946C00A6D6D5 /* PPU Memory Map.txt */; };
@@ -135,8 +136,8 @@
 		71F138702970E3A70056AD93 /* CartridgeLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F1386F2970E3A70056AD93 /* CartridgeLoader.swift */; };
 		71F277BE2A2AAB0E006ABCDB /* Controllers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7186826A2A05B3200017F111 /* Controllers.framework */; };
 		71F277BF2A2AAB0E006ABCDB /* Controllers.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7186826A2A05B3200017F111 /* Controllers.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		71F277C12A2AAB0F006ABCDB /* CoreBlackbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7169876F2390ECE9003757CA /* CoreBlackbox.framework */; };
-		71F277C22A2AAB0F006ABCDB /* CoreBlackbox.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7169876F2390ECE9003757CA /* CoreBlackbox.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		71F277C12A2AAB0F006ABCDB /* CoreBlackbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7169876F2390ECE9003757CA /* CoreBlackbox.framework */; platformFilters = (ios, macos, ); };
+		71F277C22A2AAB0F006ABCDB /* CoreBlackbox.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7169876F2390ECE9003757CA /* CoreBlackbox.framework */; platformFilters = (ios, macos, ); settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		71F277C42A2B1317006ABCDB /* VideoDisplayAndShownAccessories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F277C32A2B1317006ABCDB /* VideoDisplayAndShownAccessories.swift */; };
 		71F277C82A2B17E1006ABCDB /* MainToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F277C72A2B17E1006ABCDB /* MainToolbar.swift */; };
 		71F631E02918BF8C006949B8 /* SystemPaletteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F631DF2918BF8C006949B8 /* SystemPaletteView.swift */; };
@@ -1466,11 +1467,20 @@
 		};
 		71CEBD8C2A05B6D2009047C4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
+			platformFilters = (
+				ios,
+				macos,
+				xros,
+			);
 			target = 7169876E2390ECE9003757CA /* CoreBlackbox */;
 			targetProxy = 71CEBD8B2A05B6D2009047C4 /* PBXContainerItemProxy */;
 		};
 		71EFE18F28E7610100D1BBAE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
+			platformFilters = (
+				ios,
+				macos,
+			);
 			target = 7169876E2390ECE9003757CA /* CoreBlackbox */;
 			targetProxy = 71EFE18E28E7610100D1BBAE /* PBXContainerItemProxy */;
 		};
@@ -1642,12 +1652,13 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.wordparts.CoreBlackbox;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
-				SUPPORTED_PLATFORMS = "appletvos appletvsimulator driverkit iphoneos iphonesimulator macosx watchos watchsimulator";
+				SUPPORTED_PLATFORMS = "appletvos appletvsimulator driverkit iphoneos iphonesimulator macosx watchos watchsimulator xros xrsimulator";
 				SUPPORTS_MACCATALYST = YES;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2,3,4";
+				TARGETED_DEVICE_FAMILY = "1,2,3,4,7";
 			};
 			name = Debug;
 		};
@@ -1679,11 +1690,12 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.wordparts.CoreBlackbox;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
-				SUPPORTED_PLATFORMS = "appletvos appletvsimulator driverkit iphoneos iphonesimulator macosx watchos watchsimulator";
+				SUPPORTED_PLATFORMS = "appletvos appletvsimulator driverkit iphoneos iphonesimulator macosx watchos watchsimulator xros xrsimulator";
 				SUPPORTS_MACCATALYST = YES;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2,3,4";
+				TARGETED_DEVICE_FAMILY = "1,2,3,4,7";
 			};
 			name = Release;
 		};
@@ -1760,10 +1772,13 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = auto;
 				SKIP_INSTALL = YES;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = "1,2,7";
 			};
 			name = Debug;
 		};
@@ -1800,10 +1815,13 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = auto;
 				SKIP_INSTALL = YES;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = "1,2,7";
 			};
 			name = Release;
 		};
@@ -1887,12 +1905,13 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.wordparts.Blackbox;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = "1,2,7";
 			};
 			name = Debug;
 		};
@@ -1930,12 +1949,13 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.wordparts.Blackbox;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = "1,2,7";
 			};
 			name = Release;
 		};
@@ -2131,8 +2151,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/glhaynes/OnscreenController/";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
+				branch = feature/addVisionOSSupport;
+				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
