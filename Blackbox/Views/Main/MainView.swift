@@ -132,7 +132,9 @@ struct MainView: View {
                     .opacity(isOnscreenControllerShown ? onscreenControllerPreferredOpacity : 0)
                     .animation(.linear(duration: 0.5), value: isOnscreenControllerShown)
             }
+            #if !os(xrOS)
             .background(background)
+            #endif
             .toolbar {
                 MainToolbar(isWelcomeViewShown: $viewModel.isWelcomeViewShown,
                             areAccessoriesPreferredShown: $areAccessoriesPreferredShown,
