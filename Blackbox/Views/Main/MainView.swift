@@ -132,7 +132,7 @@ struct MainView: View {
                     .opacity(isOnscreenControllerShown ? onscreenControllerPreferredOpacity : 0)
                     .animation(.linear(duration: 0.5), value: isOnscreenControllerShown)
             }
-            #if !os(xrOS)
+            #if !os(visionOS)
             .background(background)
             #endif
             .toolbar {

@@ -59,7 +59,7 @@
 		715AE2E22537DA4500DE067C /* FixedWidthInteger+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715AE2E12537DA4500DE067C /* FixedWidthInteger+Additions.swift */; };
 		715B51C72A4A6FCD004088F2 /* VideoDisplayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715B51C62A4A6FCD004088F2 /* VideoDisplayViewModel.swift */; };
 		715D49C22A18309A005758F2 /* PreviewSampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715661C029662B4700FC4B0C /* PreviewSampleData.swift */; };
-		716273BC2A51467700A6C7AA /* OnscreenController in Frameworks */ = {isa = PBXBuildFile; platformFilter = ios; productRef = 716273BB2A51467700A6C7AA /* OnscreenController */; };
+		716273BC2A51467700A6C7AA /* OnscreenController in Frameworks */ = {isa = PBXBuildFile; platformFilters = (ios, xros, ); productRef = 716273BB2A51467700A6C7AA /* OnscreenController */; };
 		716326F928CD777A00131C52 /* BitFieldAccessible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716326F828CD777A00131C52 /* BitFieldAccessible.swift */; };
 		716326FD28CD828F00131C52 /* FixedWidthInteger+BitFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716326FC28CD828F00131C52 /* FixedWidthInteger+BitFields.swift */; };
 		716326FF28CD897300131C52 /* FixedWidthIntegerBitFieldsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716326FE28CD897300131C52 /* FixedWidthIntegerBitFieldsTests.swift */; };
@@ -96,7 +96,6 @@
 		7192C50D2A1D953200B11D09 /* Accessories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7192C50C2A1D953200B11D09 /* Accessories.swift */; };
 		7192C50F2A1D99A800B11D09 /* VideoDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7192C50E2A1D99A800B11D09 /* VideoDisplay.swift */; };
 		7192C5132A1DAD3500B11D09 /* MacOSStubSizeClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7192C5122A1DAD3500B11D09 /* MacOSStubSizeClass.swift */; };
-		7195AA042A29B15900BB7724 /* OnscreenController in Frameworks */ = {isa = PBXBuildFile; platformFilters = (ios, xros, ); productRef = 7195AA032A29B15900BB7724 /* OnscreenController */; };
 		71977FC528DF99E700413D15 /* MaskRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71977FC428DF99E700413D15 /* MaskRegister.swift */; };
 		71977FC728DF99FF00413D15 /* StatusRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71977FC628DF99FF00413D15 /* StatusRegister.swift */; };
 		71977FC928DF9A1000413D15 /* LoopyRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71977FC828DF9A1000413D15 /* LoopyRegister.swift */; };
