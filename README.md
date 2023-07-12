@@ -9,16 +9,19 @@ Blackbox is a hobby project for experimentation and learning, but I’d be delig
 
 It’s named for the classic [“black box” games](https://videogamegraders.com/nes-black-box-games-details/) released alongside and soon after the NES’s release in North America in 1985. 
 
-<center>
-<img src="Screenshots/SuperMarioBros-Dark-Mac.png" hspace="20" vspace="20" align="" alt="Blackbox running Super Mario Bros on a Mac" />
-<br />
-<img src="Screenshots/Golf-Dark-iPhone14ProMaxWithBezel.png" hspace="0" vspace="20" alt="Blackbox running Golf on an iPhone 14 Pro Max" />
-<img src="Screenshots/OnboardingTitleScreen-Dark-iPhone14ProMaxWithBezels.png" hspace="0" vspace="20" alt="Blackbox’s onboarding screen on an iPhone 14 Pro Max" />
-<br />
-<img src="Screenshots/BalloonFight-Light-iPadPro11WithBezels.png" hspace="20" vspace="20" alt="Blackbox running Balloon Fight on an iPad Pro 11&#34;" />
-<br />
-<img src="Screenshots/Baseball-AppleVisionPro.jpg" hspace="20" vspace="20" alt="Blackbox running Baseball on Apple Vision Pro" />
-</center>
+<p align="center">
+  <img src="Screenshots/SuperMarioBros-Dark-Mac.png" hspace="20" vspace="20" align="" alt="Blackbox running Super Mario Bros on a Mac" />
+</p>
+<p align="center">
+  <img src="Screenshots/Golf-Dark-iPhone14ProMaxWithBezel.png" hspace="20" vspace="20" alt="Blackbox running Golf on an iPhone 14 Pro Max" />
+  <img src="Screenshots/OnboardingTitleScreen-Dark-iPhone14ProMaxWithBezels.png" hspace="20" vspace="20" alt="Blackbox’s onboarding screen on an iPhone 14 Pro Max" />
+</p>
+<p align="center">
+  <img src="Screenshots/BalloonFight-Light-iPadPro11WithBezels.png" hspace="20" vspace="20" alt="Blackbox running Balloon Fight on an iPad Pro 11&#34;" />
+</p>
+<p align="center">
+  <img src="Screenshots/Baseball-AppleVisionPro.jpg" hspace="20" vspace="20" alt="Blackbox running Baseball on Apple Vision Pro" />
+</p>
 
 ## Technical Details
 Blackbox uses the SwiftUI app lifecycle. It includes:
