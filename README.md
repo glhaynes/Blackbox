@@ -12,8 +12,8 @@ It’s named for the classic [“black box” games](https://videogamegraders.co
 <center>
 <img src="Screenshots/SuperMarioBros-Dark-Mac.png" hspace="20" vspace="20" align="" alt="Blackbox running Super Mario Bros on a Mac" />
 <br />
-<img src="Screenshots/Golf-Dark-iPhone14ProMaxWithBezel.png" hspace="20" vspace="20" alt="Blackbox running Golf on an iPhone 14 Pro Max" />
-<img src="Screenshots/OnboardingTitleScreen-Dark-iPhone14ProMaxWithBezels.png" hspace="20" vspace="20" alt="Blackbox’s onboarding screen on an iPhone 14 Pro Max" />
+<img src="Screenshots/Golf-Dark-iPhone14ProMaxWithBezel.png" hspace="0" vspace="20" alt="Blackbox running Golf on an iPhone 14 Pro Max" />
+<img src="Screenshots/OnboardingTitleScreen-Dark-iPhone14ProMaxWithBezels.png" hspace="0" vspace="20" alt="Blackbox’s onboarding screen on an iPhone 14 Pro Max" />
 <br />
 <img src="Screenshots/BalloonFight-Light-iPadPro11WithBezels.png" hspace="20" vspace="20" alt="Blackbox running Balloon Fight on an iPad Pro 11&#34;" />
 <br />
