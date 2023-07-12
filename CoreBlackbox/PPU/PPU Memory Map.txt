@@ -1,0 +1,33 @@
+
+NES PPU Memory Map
+
+- 16 KiB address space
+- see https://www.nesdev.org/wiki/PPU_memory_map
+
+
+0x0000...0x1fff (8 KiB range)
+
+    CHR-ROM or CHR-RAM (often bank-switched)
+    Each pattern table is split into 16×16 grid of 8×8 tiles, each of which is stored in two 16 byte bitplanes.
+
+    Pattern tables, each of size 0x1000   #1 0x0000...0x0fff
+                           (4096 bytes)   #2 0x1000...0x1fff
+
+0x2000...0x3fff (8 KiB range)
+
+    In basic situations, the first 4KiB is mapped to 2KiB NES internal VRAM, providing
+    2× 1KiB (0x0400) nametables, each mirrored once. Can be partly or fully remapped by the
+    cartridge, allowing it to provide up to 4 complete nametables.
+
+        First 4 KiB
+        Nametables, each of size 0x0400   #1 0x2000...0x23ff
+                                          #2 0x2400...0x27ff
+                                          #3 0x2800...0x2bff
+                                          #4 0x2c00...0x2fff
+        Second 4 KiB
+             (Mirrors of most of above)   #1 0x3000...0x33ff
+                                          #2 0x3400...0x37ff
+                                          #3 0x3800...0x3bff
+                                (most of) #4 0x3c00...0x3eff  * NB: not 0x3fff; last 256 (0x100) bytes detailed below
+             Palette RAM (32 bytes)          0x3f00...0x3f1f
+             (7× mirrors of above)           0x3f20...0x3fff
