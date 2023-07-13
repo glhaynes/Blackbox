@@ -9,27 +9,38 @@
 import Foundation
 
 public enum INESParser {
+    
+    public enum Error: Swift.Error {
+        case noHeader
+        case invalidMagic
+        case noSecondaryHeader
+        case invalidProgramROMCount
+        case invalidCharacterROMCount
+        case invalidProgramROMSize
+        case invalidSizesInHeader
+    }
 
-    public static func parse(_ data: Data) -> INESFileContents? {
-        
-        // TODO: Would be nicer to use exceptions
-        
-        guard data.count >= 4, magic(from: Array(data[0...3])) == 0x4e45531a else {
-            return nil
+    public static func parse(_ data: Data) throws -> INESFileContents {
+        guard data.count >= 4 else {
+            throw Error.noHeader
+        }
+            
+        guard magic(from: Array(data[0...3])) == 0x4e45531a else {
+            throw Error.invalidMagic
         }
         
         guard data.count >= 9 else {
-            return nil
+            throw Error.noSecondaryHeader
         }
 
         let prgROMCount = Int(data[4])
-        guard prgROMCount > 0 else { return nil }
+        guard prgROMCount > 0 else { throw Error.invalidProgramROMCount }
         let chrROMCount = Int(data[5])
-        guard chrROMCount > 0 else { return nil }
+        guard chrROMCount > 0 else { throw Error.invalidCharacterROMCount }
         let flags6 = data[6]
         let flags7 = data[7]
         let prgRAMSize = Int(data[8])
-        guard prgRAMSize >= 0 else { return nil }
+        guard prgRAMSize >= 0 else { throw Error.invalidProgramROMSize }
 
         let isIncludingTrainer = (flags6 & 0x04) != 0  // TODO: Document what a trainer is
         
@@ -45,7 +56,7 @@ public enum INESParser {
         
         guard data.count >= max(prgROMsBaseOffset + prgROMsTotalSize,
                                 chrROMsBaseOffset + chrROMsTotalSize)
-        else { return nil }
+        else { throw Error.invalidSizesInHeader }
         
         let prgROM = Array(data[prgROMsBaseOffset..<prgROMsBaseOffset + prgROMsTotalSize])
         let chrROM = Array(data[chrROMsBaseOffset..<chrROMsBaseOffset + chrROMsTotalSize])

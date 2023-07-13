@@ -18,7 +18,7 @@ enum CartridgeLoader {
     }
     
     static func load(data: Data, url: URL?) throws -> Cartridge {
-        guard let iNESFile = INESParser.parse(data) else {
+        guard let iNESFile = try? INESParser.parse(data) else {
             throw Error.couldNotParseAsINESFile
         }
         guard let cartridge = CartridgeBuilder.cartridge(for: iNESFile, url: url) else {
