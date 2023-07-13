@@ -54,3 +54,4 @@ This project relies heavily on some fantastic resources, most prominently those 
 - Javidx9’s [NES Emulator From Scratch](https://www.youtube.com/playlist?list=PLrOv9FMX8xJHqMvSGB_9G9nZZ_4IgteYf) channel on YouTube was tremendously helpful, particularly when building the PPU emulation.
 - The included “Sample ROM” is [`NES-ca65-example`](https://github.com/bbbradsmith/NES-ca65-example) by [Brad Smith](http://rainwarrior.ca/). Assembly source is available at the link.
 - [RussianManSMWC](https://github.com/RussianManSMWC)’s [Donkey Kong NES disassembly](https://github.com/RussianManSMWC/Donkey-Kong-NES-Disassembly) saved hours of debugging time while getting the project’s components connected.
+- [Toffer D. Brutechild](https://itstoffer.com) beta tested and gave valuable feedback, ideas, and encouragement. 
