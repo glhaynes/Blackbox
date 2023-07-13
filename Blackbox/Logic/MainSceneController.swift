@@ -90,14 +90,28 @@ final class MainSceneController {
     }
     
     private func loadROMFile(url: URL, title: String, isSampleROM: Bool) {
-        let success = loadCartridge(romURL: url, title: title, isSampleROM: isSampleROM)
-        if success {
-            viewModel.isAnimatedBounceNeeded = true
-            #if PERFORMANCE_METRICS
-            // Tell the `DisplayValuesManager` that it's time to take a momentary snapshot of performance metrics
-            displayValuesManager.hasAROMBeenLoaded = true
-            #endif
+        guard let cartridge = try? CartridgeLoader.load(romURL: url) else {
+            emulatorModel.removeCartridge()
+            viewModel.loadedROMTitle = nil
+            return
         }
+
+        emulatorModel.loadCartridge(cartridge)
+
+        viewModel.loadedROMTitle = title
+        viewModel.isAnimatedBounceNeeded = true
+
+        // Now that we've successfully loaded the ROM, add it to the recents list
+        if isSampleROM {
+            recentsManager.addRecentForSampleROM()
+        } else {
+            recentsManager.addRecent(for: url)
+        }
+        
+        #if PERFORMANCE_METRICS
+        // Tell the `DisplayValuesManager` that it's time to take a momentary snapshot of performance metrics
+        displayValuesManager.hasAROMBeenLoaded = true
+        #endif
     }
     
     func reset() {
@@ -121,29 +135,6 @@ final class MainSceneController {
     }
         
     // MARK: Misc helpers
-    
-    /// Returns a `Bool` representing whether the ROM was able to be loaded successfully
-    private func loadCartridge(romURL: URL, title: String, isSampleROM: Bool = false) -> Bool {
-        guard let cartridge = try? CartridgeLoader.load(romURL: romURL) else {
-            emulatorModel.removeCartridge()
-            viewModel.loadedROMTitle = nil
-            return false
-            // TODO: Throw instead?
-            // TODO: Need to show an alert!
-        }
-
-        emulatorModel.loadCartridge(cartridge)
-        viewModel.loadedROMTitle = title
-        
-        // Now that we've successfully loaded the ROM, add it to the recents list
-        if isSampleROM {
-            recentsManager.addRecentForSampleROM()
-        } else {
-            recentsManager.addRecent(for: romURL)
-        }
-        
-        return true
-    }
     
     private func showWelcomeViewIfNeeded() {
         // TODO: Only show this when it's never been shown or for particular upgrades. Right now we're going to show this every time the version changes.
