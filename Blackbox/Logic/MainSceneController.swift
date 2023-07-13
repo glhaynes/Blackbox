@@ -90,9 +90,15 @@ final class MainSceneController {
     }
     
     private func loadROMFile(url: URL, title: String, isSampleROM: Bool) {
-        guard let cartridge = try? CartridgeLoader.load(romURL: url) else {
+        let cartridge: Cartridge
+        do {
+            cartridge = try CartridgeLoader.load(romURL: url)
+        } catch {
             emulatorModel.removeCartridge()
             viewModel.loadedROMTitle = nil
+            if let error = error as? CartridgeLoader.Error {
+                viewModel.errorContent = .init(details: .errorOpeningCartridge(error))
+            }
             return
         }
 
