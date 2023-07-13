@@ -51,6 +51,8 @@ It’s built on top of `CoreBlackbox`, a module that provides the following:
 
 More of the above components may be separated into their own Swift packages in the future. If you have suggestions for what would be particularly useful, please let me know.
 
+## Privacy and Data Collection
+Blackbox does not make any network calls; no personal data is recorded or sent by the app.
 
 ## Acknowledgements
 This project relies heavily on some fantastic resources, most prominently those below. I’m grateful for their work.
