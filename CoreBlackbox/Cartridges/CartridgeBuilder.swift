@@ -9,8 +9,15 @@
 import Foundation
 
 public enum CartridgeBuilder {
-    public static func cartridge(for file: INESFileContents, url: URL?) -> Cartridge? {
-        guard let mapper = MapperBuilder.mapper(forID: Int(file.mapperID)) else { return nil }
+    
+    public enum Error: Swift.Error {
+        case mapperNotSupported(UInt8)
+    }
+    
+    public static func cartridge(for file: INESFileContents, url: URL?) throws -> Cartridge {
+        guard let mapper = MapperBuilder.mapper(forID: Int(file.mapperID)) else {
+            throw Error.mapperNotSupported(file.mapperID)
+        }
         return Cartridge(mapper: mapper, prgROM: file.prgROM, chrROM: file.chrROM, mirroring: file.mirroring)
     }
 }

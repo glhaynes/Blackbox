@@ -10,21 +10,11 @@ import Foundation
 import CoreBlackbox
 
 enum CartridgeLoader {
-        
+    
     enum Error: Swift.Error {
         case couldNotLoadROMURL,
-             couldNotParseAsINESFile,
-             mapperNotSupportedOrInvalidFile
-    }
-    
-    static func load(data: Data, url: URL?) throws -> Cartridge {
-        guard let iNESFile = INESParser.parse(data) else {
-            throw Error.couldNotParseAsINESFile
-        }
-        guard let cartridge = CartridgeBuilder.cartridge(for: iNESFile, url: url) else {
-            throw Error.mapperNotSupportedOrInvalidFile
-        }
-        return cartridge
+             couldNotParseAsINESFile(INESParser.Error),
+             mapperNotSupported(UInt8)
     }
     
     static func load(romURL: URL) throws -> Cartridge {
@@ -42,5 +32,18 @@ enum CartridgeLoader {
             }
         }
         return try? Data(contentsOf: url)
+    }
+    
+    private static func load(data: Data, url: URL?) throws -> Cartridge {
+        do {
+            let iNESFile = try INESParser.parse(data)
+            return try CartridgeBuilder.cartridge(for: iNESFile, url: url)
+        }
+        catch let error as INESParser.Error {
+            throw Error.couldNotParseAsINESFile(error)
+        }
+        catch CartridgeBuilder.Error.mapperNotSupported(let mapperID) {
+            throw Error.mapperNotSupported(mapperID)
+        }
     }
 }

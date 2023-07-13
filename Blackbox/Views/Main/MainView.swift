@@ -54,6 +54,9 @@ struct MainView: View {
     var body: some View {
         bodyContent
             .persistentSystemOverlays(.hidden)
+            .alert(item: $viewModel.errorContent) { content in
+                Alert(title: Text("Could not Open ROM File"), message: Text(string(for: content.details)))
+            }
             #if os(macOS)
             .onChange(of: viewModel.isAboutViewShown) { value in
                 guard value else { return }
@@ -249,6 +252,26 @@ struct MainView: View {
             }
         }
         #endif
+    }
+    
+    private func string(for details: ViewModel.ErrorContent.Details) -> String {
+        switch details {
+        case .errorOpeningCartridge(let cartridgeLoaderError):
+            switch cartridgeLoaderError {
+            case .couldNotLoadROMURL:
+                return "Could not load data from file."
+            case .couldNotParseAsINESFile:
+                return "File could not be parsed as an iNES file."
+            case .mapperNotSupported(let mapperID):
+                return """
+                    The mapper chip (mapper ID: \(mapperID)) used by this ROM is not yet supported by Blackbox.
+
+                    Mapper chips (“mappers”) were enhancement chips included in NES cartridges to enable extra functionality.
+
+                    Blackbox currently only supports mappers from the earliest NES releases such as the “black box” games released in North America in 1985 or soon after.
+                    """
+            }
+        }
     }
     
     private enum MainContentSizeKey: PreferenceKey {
