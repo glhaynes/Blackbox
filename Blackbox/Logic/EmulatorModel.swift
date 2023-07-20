@@ -87,7 +87,7 @@ final class EmulatorModel {
         }
         
         // Doing these in batches of 90,000 because that's approximately how many it takes for a new frame.
-        NESExecutor.run(bus, inBatchesOfSystemCycleCount: 90_000, stoppingEarlyIf: { bus in
+        NESExecutor.run(bus, inBatchesOfSystemCycleCount: 90_000, stoppingAfterBatchIf: { bus in
             bus.ppu.hasNewDisplayValues
         })
     }

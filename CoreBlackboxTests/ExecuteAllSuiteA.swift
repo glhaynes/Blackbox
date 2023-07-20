@@ -25,7 +25,7 @@ final class ExecuteAllSuiteA: XCTestCase {
                                          logger: defaultTestingLogger)
         let bus = TestMachineBuilder.buildTestBus(using: cpuKind, memory: memory, logger: defaultTestingLogger)
                 
-        NESExecutor.run(bus, inBatchesOfSystemCycleCount: 1024 * 1024, stoppingEarlyIf: { $0.cpu.isInAnInfiniteLoop() })
+        NESExecutor.run(bus, inBatchesOfSystemCycleCount: 1024 * 1024, stoppingAfterBatchIf: { $0.cpu.isInAnInfiniteLoop() })
 
         // "the value in address $0210 should be $FF, if your CPU passed. You will know that the test is finished when the program counter (PC) has reached address $45C0."
 

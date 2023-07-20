@@ -39,7 +39,7 @@ final class Execute6502FunctionalTest: XCTestCase {
         
         NESExecutor.run(bus,
                         inBatchesOfSystemCycleCount: 384_965_481,  // Measured on M6502; maybe we should just set to 0.5 billion or something; CPU6502 says 96_241_371 currently…
-                        stoppingEarlyIf: { $0.cpu.isInAnInfiniteLoop() })
+                        stoppingAfterBatchIf: { $0.cpu.isInAnInfiniteLoop() })
 
         XCTAssertEqual(bus.cpu.processorState.pc, Self.successAddress)
         #endif

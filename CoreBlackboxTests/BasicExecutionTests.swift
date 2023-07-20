@@ -31,7 +31,7 @@ final class BasicExecutionTests: XCTestCase {
             address += 1
         }
         
-        NESExecutor.run(bus, inBatchesOfSystemCycleCount: 1024 * 1024, stoppingEarlyIf: { $0.cpu.isInAnInfiniteLoop() })
+        NESExecutor.run(bus, inBatchesOfSystemCycleCount: 1024 * 1024, stoppingAfterBatchIf: { $0.cpu.isInAnInfiniteLoop() })
         
         // 0xee + 0xa0 = 0x18e, so 0x8e and carry set
         XCTAssertEqual(bus.cpu.processorState.a, 0x8e)
@@ -54,7 +54,7 @@ final class BasicExecutionTests: XCTestCase {
                                          resetVectorInitialValue: 0x8000,
                                          logger: defaultTestingLogger)
         let bus = TestMachineBuilder.buildTestBus(using: cpuKind, memory: memory, logger: defaultTestingLogger)
-        NESExecutor.run(bus, inBatchesOfSystemCycleCount: 1024 * 1024, stoppingEarlyIf: { $0.cpu.isInAnInfiniteLoop() })
+        NESExecutor.run(bus, inBatchesOfSystemCycleCount: 1024 * 1024, stoppingAfterBatchIf: { $0.cpu.isInAnInfiniteLoop() })
 
         XCTAssertEqual(bus.cpu.processorState.x, 0)
         XCTAssertEqual(bus.cpu.processorState.y, 0)
@@ -101,7 +101,7 @@ final class BasicExecutionTests: XCTestCase {
                                          resetVectorInitialValue: 0x0600,
                                          logger: defaultTestingLogger)
         let bus = TestMachineBuilder.buildTestBus(using: cpuKind, memory: memory, logger: defaultTestingLogger)
-        NESExecutor.run(bus, inBatchesOfSystemCycleCount: 1024 * 1024, stoppingEarlyIf: { $0.cpu.isInAnInfiniteLoop() })
+        NESExecutor.run(bus, inBatchesOfSystemCycleCount: 1024 * 1024, stoppingAfterBatchIf: { $0.cpu.isInAnInfiniteLoop() })
         XCTAssertEqual(bus.cpu.processorState.x, 3)
         // TODO: Could use more asserts here
     }
