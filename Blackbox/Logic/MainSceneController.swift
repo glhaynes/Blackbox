@@ -14,10 +14,10 @@ import CoreBlackbox
 
 @MainActor  // TODO: Not 100% sure we still need this to be @MainActor... but it (probably) doesn't hurt to keep that trait for now, at least
 final class MainSceneController {
-        
-    private static var appVersion: String {
+    
+    private static let appVersion = {
         Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? ""
-    }
+    }()
 
     private let viewModel: ViewModel
     private let logger: Logger?

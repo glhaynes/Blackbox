@@ -10,21 +10,32 @@ import SwiftUI
 
 struct AboutView: View {
     
+    private static let appVersion = {
+        Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? ""
+    }()
+    
+    private static let about = try! AttributedString(
+        markdown: """
+            
+            **Blackbox** (v\(appVersion)) by Grady Haynes
+            
+            
+            Nintendo Entertainment System (NES) emulator
+            for iOS, iPadOS, macOS, and visionOS written in Swift
+            
+            **[Project Page](https://github.com/glhaynes/Blackbox)**
+            
+            Blackbox is distributed under the [MIT License](https://en.wikipedia.org/wiki/MIT_License).
+            
+            """,
+        options: .init(interpretedSyntax: .inlineOnlyPreservingWhitespace))
+    
     var body: some View {
         // TODO: Consider using this and just rendering the README.md? https://github.com/gonzalezreal/swift-markdown-ui
-        Text(about)
-            .multilineTextAlignment(.leading)
+        Text(Self.about)
+            .multilineTextAlignment(.center)
             .tint(.accentColor)
     }
-    
-    private let about: LocalizedStringKey = """
-        **Blackbox**
-        
-        Nintendo Entertainment System (NES) emulator for Apple platforms
-
-        This app is a work in progress by Grady Haynes. Its [source code is freely available](https://github.com/glhaynes/Blackbox) under the MIT license. Feedback and contributions are welcomed.
-        
-        """
 }
 
 struct AboutView_Previews: PreviewProvider {
