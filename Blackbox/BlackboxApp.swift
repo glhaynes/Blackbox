@@ -51,3 +51,7 @@ struct BlackboxApp: App {
         #endif
     }
 }
+
+#if DEBUG
+#warning("For playable performance, run in Release mode.")
+#endif

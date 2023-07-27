@@ -13,7 +13,7 @@ public enum NESExecutor {
     private static var totalSystemCycles: UInt64 = 0
     public static func run(_ bus: some Bus,
                            inBatchesOfSystemCycleCount cycleBatchCount: UInt64,
-                           stoppingEarlyIf stopIf: ((any Bus) -> Bool) = { _ in false }) {
+                           stoppingAfterBatchIf stopIf: ((any Bus) -> Bool) = { _ in false }) {
         var stop = false
         while(!stop) {
             var cyclesThisRun: UInt64 = 0
