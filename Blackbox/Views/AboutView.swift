@@ -18,11 +18,12 @@ struct AboutView: View {
     }
     
     private let about: LocalizedStringKey = """
-        **Blackbox** by Grady Haynes
+        **Blackbox**
         
-        Nintendo Entertainment System (NES) emulator for iOS, iPadOS, macOS, and visionOS written in Swift
+        Nintendo Entertainment System (NES) emulator for Apple platforms
+
+        This app is a work in progress by Grady Haynes. Its [source code is freely available](https://github.com/glhaynes/Blackbox) under the MIT license. Feedback and contributions are welcomed.
         
-        [Project page](https://github.com/glhaynes/Blackbox) on GitHub
         """
 }
 
