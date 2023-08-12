@@ -216,23 +216,6 @@ extension M6502: CPU {
 
         return false
     }
-    
-    public func decodeInstruction() throws -> Instruction {
-        
-        enum Error: Swift.Error {
-            case noBus       // TODO: These shouldn't be here; maybe harmonize this function with the similar one on CPU6502.
-            case invalidOpcode(UInt8)
-        }
-        
-        guard let bus else { throw Error.noBus }
-        
-        let instructionSet = InstructionSet()
-        let nextOpcode = bus.read(from: processorState.pc)
-        guard let instruction = instructionSet.instructionForOpcode[nextOpcode] else {
-            throw Error.invalidOpcode(nextOpcode)
-        }
-        return instruction
-    }
 }
 
 extension M6502: InterruptRaiser {

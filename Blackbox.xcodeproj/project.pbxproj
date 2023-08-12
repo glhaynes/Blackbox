@@ -34,7 +34,6 @@
 		713E20C729F89F4E00D51694 /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = 713E20C629F89F4E00D51694 /* Algorithms */; };
 		713FB9922A496333002BFF64 /* VideoRefresher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713FB9912A496333002BFF64 /* VideoRefresher.swift */; };
 		7140E6792A394E33001F9226 /* MainCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7140E6782A394E33001F9226 /* MainCommands.swift */; };
-		7141A39B2751D0650080C51A /* nestest-headerStripped.nes in Resources */ = {isa = PBXBuildFile; fileRef = 7141A39A2751D0650080C51A /* nestest-headerStripped.nes */; };
 		71431C9928D18134009603CD /* Sprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71431C9828D18134009603CD /* Sprite.swift */; };
 		71431C9B28D18145009603CD /* RGBValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71431C9A28D18145009603CD /* RGBValue.swift */; };
 		71431C9D28D1822C009603CD /* SystemStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71431C9C28D1822C009603CD /* SystemStatus.swift */; };
@@ -47,11 +46,13 @@
 		7145ADE32A42D97B0093A4AA /* OnscreenControllerPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7145ADE22A42D97B0093A4AA /* OnscreenControllerPage.swift */; };
 		7145ADE52A42D9870093A4AA /* LimitationsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7145ADE42A42D9870093A4AA /* LimitationsPage.swift */; };
 		7145ADE72A42D9930093A4AA /* GameROMsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7145ADE62A42D9930093A4AA /* GameROMsPage.swift */; };
+		714AEFA22A7A240400E45AA4 /* nestest.nes in Resources */ = {isa = PBXBuildFile; fileRef = 7141A3982751C9E50080C51A /* nestest.nes */; };
 		714EF55229713DD400FF4741 /* Wedge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714EF55129713DD400FF4741 /* Wedge.swift */; };
 		71535ADE28D00C69004764CE /* NESBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71535ADD28D00C69004764CE /* NESBuilder.swift */; };
 		71535ADF28D00E5E004764CE /* NESExecutor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D3DC7A28C2A23E00F4A81A /* NESExecutor.swift */; };
 		7153675C28BE92EF00A1F2C2 /* BasicTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7153675B28BE92EF00A1F2C2 /* BasicTests.swift */; };
 		7153676228BEA02200A1F2C2 /* Addressable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7153676128BEA02200A1F2C2 /* Addressable.swift */; };
+		71540FDF2A7F55F100952794 /* NintendulatorStateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716289282A7CA61600B369BB /* NintendulatorStateFormatter.swift */; };
 		715661B92964CBE800FC4B0C /* ProcessorStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715661B82964CBE800FC4B0C /* ProcessorStatusView.swift */; };
 		715661BB29660B2F00FC4B0C /* ProcessorInterruptRequestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715661BA29660B2F00FC4B0C /* ProcessorInterruptRequestView.swift */; };
 		715661C329662EF100FC4B0C /* UTType+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715661C229662EF100FC4B0C /* UTType+Additions.swift */; };
@@ -71,6 +72,8 @@
 		716B562E280886E200D160DF /* nestest-reduced.log in Resources */ = {isa = PBXBuildFile; fileRef = 716B562D280886E200D160DF /* nestest-reduced.log */; };
 		716B5634280A729500D160DF /* CPU6502.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716B5633280A729500D160DF /* CPU6502.swift */; };
 		716E3A32294E887A00FD9EB1 /* RecentsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716E3A31294E887A00FD9EB1 /* RecentsList.swift */; };
+		7171CB552A7A03CE0038CF6B /* InstructionDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7171CB542A7A03CE0038CF6B /* InstructionDecoder.swift */; };
+		7171CB572A7A220B0038CF6B /* ExecuteNestest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7171CB562A7A220B0038CF6B /* ExecuteNestest.swift */; };
 		7174C8E623B5A8CB0027339D /* AllSuiteA.bin in Resources */ = {isa = PBXBuildFile; fileRef = 7174C8E123B5A71D0027339D /* AllSuiteA.bin */; };
 		7174C8EA23B963C00027339D /* UInt16+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7174C8E923B963C00027339D /* UInt16+Additions.swift */; };
 		717B97722A4E15A700A42F11 /* Interrupt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 717B97712A4E15A700A42F11 /* Interrupt.swift */; };
@@ -290,8 +293,8 @@
 		715B51C62A4A6FCD004088F2 /* VideoDisplayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoDisplayViewModel.swift; sourceTree = "<group>"; };
 		715BF9C329FC725300DBED02 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		715F164528B9AD1100A43EB9 /* NextInstructionDescription (unused).swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NextInstructionDescription (unused).swift"; sourceTree = "<group>"; };
-		715F164628B9AF1B00A43EB9 /* ExecuteNestest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExecuteNestest.swift; sourceTree = "<group>"; };
 		715F164A28B9B04400A43EB9 /* Execute6502FunctionalTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Execute6502FunctionalTest.swift; sourceTree = "<group>"; };
+		716289282A7CA61600B369BB /* NintendulatorStateFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NintendulatorStateFormatter.swift; sourceTree = "<group>"; };
 		716326F828CD777A00131C52 /* BitFieldAccessible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BitFieldAccessible.swift; sourceTree = "<group>"; };
 		716326FC28CD828F00131C52 /* FixedWidthInteger+BitFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FixedWidthInteger+BitFields.swift"; sourceTree = "<group>"; };
 		716326FE28CD897300131C52 /* FixedWidthIntegerBitFieldsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixedWidthIntegerBitFieldsTests.swift; sourceTree = "<group>"; };
@@ -306,6 +309,8 @@
 		716B562D280886E200D160DF /* nestest-reduced.log */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "nestest-reduced.log"; sourceTree = "<group>"; };
 		716B5633280A729500D160DF /* CPU6502.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPU6502.swift; sourceTree = "<group>"; };
 		716E3A31294E887A00FD9EB1 /* RecentsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RecentsList.swift; path = Blackbox/Misc/RecentsList.swift; sourceTree = SOURCE_ROOT; };
+		7171CB542A7A03CE0038CF6B /* InstructionDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionDecoder.swift; sourceTree = "<group>"; };
+		7171CB562A7A220B0038CF6B /* ExecuteNestest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExecuteNestest.swift; sourceTree = "<group>"; };
 		7174C8E123B5A71D0027339D /* AllSuiteA.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = AllSuiteA.bin; sourceTree = "<group>"; };
 		7174C8E923B963C00027339D /* UInt16+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UInt16+Additions.swift"; sourceTree = "<group>"; };
 		717B97712A4E15A700A42F11 /* Interrupt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Interrupt.swift; sourceTree = "<group>"; };
@@ -695,7 +700,7 @@
 				710159BD28C3E258003EBBF4 /* BasicExecutionTests.swift */,
 				715F164A28B9B04400A43EB9 /* Execute6502FunctionalTest.swift */,
 				710159C228C43DF6003EBBF4 /* ExecuteAllSuiteA.swift */,
-				715F164628B9AF1B00A43EB9 /* ExecuteNestest.swift */,
+				7171CB562A7A220B0038CF6B /* ExecuteNestest.swift */,
 				71069BFE28B9B59100EFC752 /* Misc */,
 				7199D07227473E7800796AE1 /* Resources */,
 				7169877F2390ECE9003757CA /* Info.plist */,
@@ -824,6 +829,9 @@
 				71AB505C28D11900002193A1 /* CPUKind.swift */,
 				71CD7CF923941537001713C9 /* ProcessorState.swift */,
 				7199D0772748B1D500796AE1 /* ProcessorState+ProcessorStatusRegister.swift */,
+				7171CB542A7A03CE0038CF6B /* InstructionDecoder.swift */,
+				716987892390ED03003757CA /* InstructionSet.swift */,
+				7169878B2390F2BA003757CA /* Instruction.swift */,
 				71D3DC7D28C2AC4E00F4A81A /* M6502 */,
 				71D9F90323934BAA00952B91 /* CPU6502 */,
 			);
@@ -861,6 +869,7 @@
 				7123423728F91B1D004377F5 /* Colors, Images, etc */,
 				7123423928F91BA8004377F5 /* Numeric Type Extensions */,
 				715F164528B9AD1100A43EB9 /* NextInstructionDescription (unused).swift */,
+				716289282A7CA61600B369BB /* NintendulatorStateFormatter.swift */,
 			);
 			path = Misc;
 			sourceTree = "<group>";
@@ -870,8 +879,6 @@
 			children = (
 				716B5633280A729500D160DF /* CPU6502.swift */,
 				7157B8BE25A1708100FA1E4A /* CPU6502+Implementation.swift */,
-				7169878B2390F2BA003757CA /* Instruction.swift */,
-				716987892390ED03003757CA /* InstructionSet.swift */,
 			);
 			path = CPU6502;
 			sourceTree = "<group>";
@@ -1199,9 +1206,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				7174C8E623B5A8CB0027339D /* AllSuiteA.bin in Resources */,
-				7141A39B2751D0650080C51A /* nestest-headerStripped.nes in Resources */,
 				716B562E280886E200D160DF /* nestest-reduced.log in Resources */,
 				712504D528C4980400C61888 /* nestest-reduced-noP.log in Resources */,
+				714AEFA22A7A240400E45AA4 /* nestest.nes in Resources */,
 				713CD11228B97D970084D6AD /* nestest.log in Resources */,
 				71069C0728B9B5DB00EFC752 /* 6502_functional_test.bin in Resources */,
 			);
@@ -1284,6 +1291,7 @@
 				713BFA9E28EFCCEF004E1C9D /* Cartridge.swift in Sources */,
 				713BFAA028EFCD0E004E1C9D /* CartridgeBuilder.swift in Sources */,
 				71A9E41428E18A4A001CF8C8 /* PixelInfoCalculator.swift in Sources */,
+				71540FDF2A7F55F100952794 /* NintendulatorStateFormatter.swift in Sources */,
 				716B5634280A729500D160DF /* CPU6502.swift in Sources */,
 				71A7CFD628F0AF8A00BAC5C5 /* CPU.swift in Sources */,
 				7185A93528CACAD300913EA2 /* ProgrammableMemoryInterface.swift in Sources */,
@@ -1305,6 +1313,7 @@
 				71997FA528DF98B700990960 /* ControlRegister.swift in Sources */,
 				71431C9F28D19D0B009603CD /* PatternTables.swift in Sources */,
 				71997FA228DF96C900990960 /* PPUState.swift in Sources */,
+				7171CB552A7A03CE0038CF6B /* InstructionDecoder.swift in Sources */,
 				7169878C2390F2BA003757CA /* Instruction.swift in Sources */,
 				71977FD028E0025800413D15 /* SpritePatternAddressCalculator.swift in Sources */,
 				71B1121E28E2C6E500FACD94 /* PPURAMAddressTranslator.swift in Sources */,
@@ -1343,6 +1352,7 @@
 				71A7CFCF28F0AD5D00BAC5C5 /* TestBus.swift in Sources */,
 				71A7CFC928F0AC0300BAC5C5 /* TestMachineBuilder.swift in Sources */,
 				71A7CFD928F100F700BAC5C5 /* ExecuteAllSuiteA.swift in Sources */,
+				7171CB572A7A220B0038CF6B /* ExecuteNestest.swift in Sources */,
 				716326FF28CD897300131C52 /* FixedWidthIntegerBitFieldsTests.swift in Sources */,
 				7153675C28BE92EF00A1F2C2 /* BasicTests.swift in Sources */,
 				713BFAA528EFCE4D004E1C9D /* ROMBuilder.swift in Sources */,
@@ -1861,7 +1871,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CODE_SIGN_ENTITLEMENTS = Blackbox/Blackbox.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1002;
+				CURRENT_PROJECT_VERSION = 2000;
 				DEVELOPMENT_ASSET_PATHS = "Blackbox/Preview\\ Content";
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1884,7 +1894,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.3;
-				MARKETING_VERSION = 1.0.2;
+				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.wordparts.Blackbox;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
@@ -1905,7 +1915,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CODE_SIGN_ENTITLEMENTS = Blackbox/Blackbox.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1002;
+				CURRENT_PROJECT_VERSION = 2000;
 				DEVELOPMENT_ASSET_PATHS = "Blackbox/Preview\\ Content";
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1928,7 +1938,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.3;
-				MARKETING_VERSION = 1.0.2;
+				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.wordparts.Blackbox;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;

@@ -19,9 +19,9 @@ extension CPU6502 {
     // Lots of good information on illegal opcodes here: https://www.masswerk.at/nowgobang/2021/6502-illegal-opcodes
         
     func execute(mnemonic: Instruction.Mnemonic,
-                          addressingMode: Instruction.AddressingMode,
-                          parameterAddress address: UInt16?) {
-        
+                 addressingMode: Instruction.AddressingMode,
+                 parameterAddress address: UInt16?
+    ) {
         // Illegal instructions tend to be basically just combinations of existing ones
         func illegalInstructionHelper(_ mnemonics: Instruction.Mnemonic...) {
             mnemonics.forEach {
@@ -32,17 +32,14 @@ extension CPU6502 {
         switch mnemonic {
         // ADC - Add With Carry
         case .adc:
-            
-            let memoryInterface = bus!
-
             let isDecimal = processorState.p[.decimal] && isRespectingDecimalMode
             
             let valueInA = isDecimal ?
                 UInt16(processorState.a).asBCDValue :
                 UInt16(processorState.a)
             let valueInMemory = isDecimal ?
-                UInt16(memoryInterface.load8(from: address!)).asBCDValue :
-                UInt16(memoryInterface.load8(from: address!))
+                UInt16(bus!.load8(from: address!)).asBCDValue :
+                UInt16(bus!.load8(from: address!))
             
             var sum = valueInA + valueInMemory + (processorState.p[.carry] ? 1 : 0)
             
@@ -91,7 +88,7 @@ extension CPU6502 {
             // TODO: Would be nice to explicitly state the others here and fail on `default`
             default:
                 let result = UInt16(bus!.load8(from: address!)) << 1
-                bus!.write(result.lowByte, to: address!)
+                write(result.lowByte, to: address!)
                 updateProcessorStatus(calculatedValue: result, flags: Self.nzc)
             }
 
@@ -164,13 +161,13 @@ extension CPU6502 {
             
             var newStatus = processorState.p
             newStatus[.break] = true  // TODO: Doesn't seem like this matches what's in the docs, but the tests want it...
-            newStatus[.bit5] = true
+            newStatus[.bit5] = true  // FIXME: Probably not needed; probably should be removed
             //newStatus[.interruptDisable] = true
             
             processorState.pc = newPC
-            bus!.write(newPC.highByte, to: stackAddress)
-            bus!.write(newPC.lowByte, to: stackAddress &- 1)
-            bus!.write(newStatus.value, to: stackAddress &- 2)
+            write(newPC.highByte, to: stackAddress)
+            write(newPC.lowByte, to: stackAddress &- 1)
+            write(newStatus.value, to: stackAddress &- 2)
             processorState.s = processorState.s &- 3
             //.processorStatus(.bit5, true),  // TODO: Should this be here?
             processorState.p[.interruptDisable] = true
@@ -239,7 +236,7 @@ extension CPU6502 {
             // TODO: This needs to handle DEC A (0x3a). Surprised we're not ever hitting that, but I guess we aren't since we're not crashing.
             let value = UInt16(bus!.load8(from: address!))
             let result = value &- 1
-            bus!.write(result.lowByte, to: address!)
+            write(result.lowByte, to: address!)
             updateProcessorStatus(calculatedValue: result, flags: Self.nz)
         
         // DEX - Decrement Index Register X
@@ -261,7 +258,7 @@ extension CPU6502 {
             updateProcessorStatus(calculatedValue: UInt16(result), flags: Self.nz)
         
         case .ign:
-            // TODO: Implement this undocumented instruction
+            // Undocumented instruction
             // "Reads from memory at the specified address and ignores the value. Affects no register nor flags. The absolute version can be used to increment PPUADDR or reset the PPUSTATUS latch as an alternative to BIT. The zero page version has no side effects.
             // "IGN d,X reads from both d and (d+X)&255. IGN a,X additionally reads from a+X-256 it crosses a page boundary (i.e. if ((a & 255) + X) > 255)
             // "Sometimes called TOP (triple-byte no-op), SKW (skip word), DOP (double-byte no-op), or SKB (skip byte)."
@@ -271,7 +268,7 @@ extension CPU6502 {
         case .inc:
             // Note: Seems like this should have carry, but it doesn't (see docs)
             let result = UInt16(bus!.load8(from: address!)) + 1
-            bus!.write(result.lowByte, to: address!)
+            write(result.lowByte, to: address!)
             updateProcessorStatus(calculatedValue: result, flags: Self.nz)
         
         // INX - Increment Index Register X
@@ -299,8 +296,8 @@ extension CPU6502 {
         case .jsr:
             let returnAddress = processorState.pc &- 1  // The "&- 1" is to adjust to follow the docs which say that when this gets pulled back (via RTS), one will be added to the result"... so we want old PC + 2 even though it's been moved ahead already by 3 (because this is a 3 byte instruction (JSR #absolute)
             let stackAddress = stackAddressFor(lowByte: processorState.s)
-            bus!.write(returnAddress.highByte, to: stackAddress)
-            bus!.write(returnAddress.lowByte, to: stackAddress &- 1)
+            write(returnAddress.highByte, to: stackAddress)
+            write(returnAddress.lowByte, to: stackAddress &- 1)
             processorState.s = processorState.s &- 2
             processorState.pc = address!
         
@@ -348,7 +345,7 @@ extension CPU6502 {
                 let value = bus!.load8(from: address!)
                 let result = value >> 1
                 let shiftedOutAOne = value & 1 == 1
-                bus!.write(result, to: address!)
+                write(result, to: address!)
                 updateProcessorStatus(calculatedValue: UInt16(result), flags: Self.nzc)
                 // If the original value had a 1 in the Ones spot and it got shifted out, stick it in the carry.
                 // TODO: Bummer that we don't have this covered in the above...
@@ -368,7 +365,7 @@ extension CPU6502 {
 
         // PHA - Push Accumulator
         case .pha:
-            bus!.write(processorState.a, to: stackAddressFor(lowByte: processorState.s))
+            write(processorState.a, to: stackAddressFor(lowByte: processorState.s))
             processorState.s = processorState.s &- 1
 
         // PHP - Push Processor Status Register
@@ -376,8 +373,8 @@ extension CPU6502 {
             var p = processorState.p
             // Note: Bits 4 and 5 need to be set when we push P from PHP - see http://wiki.nesdev.com/w/index.php/Status_flags#The_B_flag
             p[.break] = true
-            p[.bit5] = true
-            bus!.write(p.value, to: stackAddressFor(lowByte: processorState.s))
+            p[.bit5] = true  // FIXME: Probably not needed; probably should be removed
+            write(p.value, to: stackAddressFor(lowByte: processorState.s))
             processorState.s = processorState.s &- 1
 
         // TODO: What about PHX / PHY, PLX / PLY? What processors are they available on?
@@ -396,9 +393,9 @@ extension CPU6502 {
             processorState.p[.overflow] = newP[6]
             
             // Confirm we're doing the right thing and then add a note about this. See https://stackoverflow.com/questions/52017657/6502-emulator-testing-nestest#52021545
-            //processorState.p[.bit5] = newP[5]  // TODO: Does this make sense?
+            //processorState.p[.bit5] = newP[5]
             //processorState.p[.break] = newP[4]
-            processorState.p[.bit5] = false
+            //processorState.p[.bit5] = false
             processorState.p[.break] = false
             
             processorState.p[.decimal] = newP[3]
@@ -424,14 +421,12 @@ extension CPU6502 {
                 let value = bus!.load8(from: address!)
                 let carry: UInt16 = processorState.p[.carry] ? 1 : 0
                 let result = UInt16(value) << 1 | carry
-                bus!.write(result.lowByte, to: address!)
+                write(result.lowByte, to: address!)
                 updateProcessorStatus(calculatedValue: result, flags: Self.nzc)
             }
 
         // ROR - Rotate Right
         case .ror:
-            
-            // TODO: This sucks that we have to `if` here
             switch addressingMode {
             case .accumulator:
                 let value = UInt16(processorState.a)
@@ -451,7 +446,7 @@ extension CPU6502 {
                 // If the original value had a 1 in the Ones spot and it got shifted out, stick it in the carry.
                 // TODO: Bummer that we don't have this covered in the above...
                 let shiftedOutAOne = value & 1 == 1
-                bus!.write(result.lowByte, to: address!)
+                write(result.lowByte, to: address!)
                 updateProcessorStatus(calculatedValue: result, flags: Self.nz)
                 processorState.p[.carry] = shiftedOutAOne
             }
@@ -468,7 +463,7 @@ extension CPU6502 {
             
             processorState.p[.negative] = newP[7]
             processorState.p[.overflow] = newP[6]
-            processorState.p[.bit5] = newP[5]  // TODO: Does this make sense?
+            //processorState.p[.bit5] = newP[5]  // TODO: Does this make sense?
             processorState.p[.break] = newP[4]
             processorState.p[.decimal] = newP[3]
             processorState.p[.interruptDisable] = newP[2]
@@ -484,10 +479,9 @@ extension CPU6502 {
             processorState.s = processorState.s &+ 2
 
         case .sax:
-            // TODO: Implement this undocumented instruction
-            // "Stores the bitwise AND of A and X. As with STA and STX, no flags are affected."
+            // TODO: Undocumented instruction: "Stores the bitwise AND of A and X. As with STA and STX, no flags are affected."
             let value = processorState.a & processorState.x
-            bus!.write(value, to: address!)
+            write(value, to: address!)
 
         // SBC - Subtract with Borrow from Accumulator
         case .sbc:
@@ -591,10 +585,8 @@ extension CPU6502 {
             processorState.p[.interruptDisable] = true
 
         case .skb:
+            // Undocumented instruction: This doesn't do anything… think it performs a memory load or something but who cares for now
             break
-            // TODO: Implement this undocumented instruction
-            //fatalError()
-            // This doesn't do anything… think it performs a memory load or something but who cares
 
         case .slo:
             // "Equivalent to ASL value then ORA value, except supporting more addressing modes. LDA #0 followed by SLO is an efficient way to shift a variable while also loading it in A."
@@ -606,15 +598,15 @@ extension CPU6502 {
 
         // STA - Store Accumulator to Memory
         case .sta:
-            bus!.write(processorState.a, to: address!)
+            write(processorState.a, to: address!)
 
         // STX - Store Index Register X to Memory
         case .stx:
-            bus!.write(processorState.x, to: address!)
+            write(processorState.x, to: address!)
 
         // STY - Store Index Register Y to Memory
         case .sty:
-            bus!.write(processorState.y, to: address!)
+            write(processorState.y, to: address!)
             
         // TAX - Transfer Accumulator to Index Register X
         case .tax:
@@ -695,10 +687,13 @@ private extension CPU6502 {
     func calculateCarry(for value: UInt16) -> Bool {
         value & 0xff00 != 0
     }
+    
+    private func write(_ value: UInt8, to address: UInt16) {
+        bus!.write(value, to: address)
+    }
 }
 
 private extension NESBus {
-    
     func load8(from address: UInt16) -> UInt8 {
         read(from: address)
     }

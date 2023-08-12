@@ -84,11 +84,7 @@ extension NESBus: Addressable {
         
     public func tick() {
         defer { cyclesCompleted += 1 }
-
-        if cyclesCompleted.isMultiple(of: 3) {
-            cpu.tick()
-        }
-        
+        cpu.tick()
         ppu.tick()
     }
     
@@ -105,7 +101,7 @@ extension NESBus: Addressable {
         case AddressRanges.cartridge:
             return cartridge?.mapper.read(from: address) ?? 0  // Or maybe `fatalError()`?
         case AddressRanges.apu:
-            return 0  // TODO
+            return 0  // TODO: Add APU functionality
         default:
             return 0
             // TODO: We used to `fatalError()` here, but that made Ice Climber crash. This seems to fix that. Look into why.

@@ -6,6 +6,7 @@
 //  Copyright © 2022 Grady Haynes. All rights reserved.
 //
 
+import os.log
 import Foundation
 import XCTest
 @testable import CoreBlackbox
@@ -96,12 +97,19 @@ final class BasicExecutionTests: XCTestCase {
 
         // TODO: Fails on .cpu6502 - why, our test of isInAnInfiniteLoop is probably bad...
     
-        let (memory, _) = ROMBuilder.rom(prgROM: "a2 08 ca 8e 00 02 e0 03 d0 f8 8e 01 02 00".splitBySpaces().uint8Values(),
-                                         startingAt: 0x0600,
-                                         resetVectorInitialValue: 0x0600,
-                                         logger: defaultTestingLogger)
+        let (memory, _) = ROMBuilder.rom(
+            prgROM: "a2 08 ca 8e 00 02 e0 03 d0 f8 8e 01 02 00".splitBySpaces().uint8Values(),
+            startingAt: 0x0600,
+            resetVectorInitialValue: 0x0600,
+            logger: defaultTestingLogger
+        )
+        
         let bus = TestMachineBuilder.buildTestBus(using: cpuKind, memory: memory, logger: defaultTestingLogger)
-        NESExecutor.run(bus, inBatchesOfSystemCycleCount: 1024 * 1024, stoppingAfterBatchIf: { $0.cpu.isInAnInfiniteLoop() })
+        
+        NESExecutor.run(bus,
+                        inBatchesOfSystemCycleCount: 1024 * 1024,
+                        stoppingAfterBatchIf: { $0.cpu.isInAnInfiniteLoop() })
+        
         XCTAssertEqual(bus.cpu.processorState.x, 3)
         // TODO: Could use more asserts here
     }

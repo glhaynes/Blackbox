@@ -45,7 +45,7 @@ public final class PPU2C02 {
     private var paletteTableRAM: [UInt8] = .init(repeating: 0, count: 32)  // TODO: Consider making this a struct?
     private var oamEntries: [OAMEntry] = .init(repeating: .init(), count: 64)
 
-    private var state = PPUState()
+    public private(set) var state = PPUState()
     private var totalCycles: UInt64 = 0
     
     private let logger: Logger?
@@ -87,7 +87,6 @@ public final class PPU2C02 {
                        | (state.status.isSpriteZeroHit ? 1 : 0) << 6
                        | (state.status.isSpriteOverflowOccurring ? 1 : 0) << 5
                        | state.externalReadDelayBuffer.bits(0...4)
-            //let retval = state.status.value | state.externalReadDelayBuffer.bits(0...4)
             state.status.isInVerticalBlank = false
             return retval
         case PPURegisterAddress.oamAddress:

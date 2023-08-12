@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct PPUState {
+public struct PPUState {
     
     var scanlineCounter = 0
     var cycleCounter = 0
