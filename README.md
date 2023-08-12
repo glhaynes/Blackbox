@@ -42,9 +42,10 @@ Blackbox uses the SwiftUI app lifecycle. It includes:
 - A sample ROM for testing
 
 It’s built on top of `CoreBlackbox`, a module that provides the following:
-- A Swift wrapper around the `m6502` CPU emulator from [floooh’s “chips” project](https://github.com/floooh/chips)
-- Another 6502 emulator, “CPU6502”, written in Swift
-  - Aside from cycle timing, this is an accurate emulator, including “illegal” instructions. It is not yet usable as the emulation core to play games, but addressing this is a top priority.
+- A 6502 emulator, “CPU6502”, written in Swift
+  - Aside from cycle timing, this is an accurate emulator, including “illegal” instructions.
+- A Swift wrapper around the C-language `m6502` CPU emulator from [floooh’s “chips” project](https://github.com/floooh/chips)
+  - This is useful during testing/debugging as it’s a “known good”, cycle-accurate, cycle-stepped 6502 emulator.
 - Emulation of the NES’s Picture Processing Unit (PPU)
 - (Very) basic mapper support
 - Loading and parsing iNES files (ROMs)
@@ -57,8 +58,8 @@ Blackbox does not make any network calls; no personal data is recorded or sent b
 ## Acknowledgements
 This project relies heavily on some fantastic resources, most prominently those below. I’m grateful for their work.
 
-- `m6502` from [floooh’s “chips” project](https://github.com/floooh/chips) is a well-crafted set of highly-accurate 8-bit chip emulators. The project’s 6502 emulator is used in this project and [this document](https://floooh.github.io/2019/12/13/cycle-stepped-6502.html) describing it was enlightening reading.
 - Javidx9’s [NES Emulator From Scratch](https://www.youtube.com/playlist?list=PLrOv9FMX8xJHqMvSGB_9G9nZZ_4IgteYf) channel on YouTube was tremendously helpful, particularly when building the PPU emulation.
-- The included “Sample ROM” is [`NES-ca65-example`](https://github.com/bbbradsmith/NES-ca65-example) by [Brad Smith](http://rainwarrior.ca/). Assembly source is available at the link.
+- `m6502` from [floooh’s “chips” project](https://github.com/floooh/chips) is a well-crafted set of highly-accurate 8-bit chip emulators. The project’s 6502 emulator is used in this project for testing and debugging. [This document](https://floooh.github.io/2019/12/13/cycle-stepped-6502.html) describing it was enlightening reading.
 - [RussianManSMWC](https://github.com/RussianManSMWC)’s [Donkey Kong NES disassembly](https://github.com/RussianManSMWC/Donkey-Kong-NES-Disassembly) saved hours of debugging time while getting the project’s components connected.
+- The included “Sample ROM” is [`NES-ca65-example`](https://github.com/bbbradsmith/NES-ca65-example) by [Brad Smith](http://rainwarrior.ca/). Assembly source is available at the link.
 - [Toffer D. Brutechild](https://itstoffer.com) beta tested and gave valuable feedback, ideas, and encouragement. 
