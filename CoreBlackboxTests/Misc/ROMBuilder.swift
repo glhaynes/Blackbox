@@ -14,11 +14,14 @@ import Foundation
 
 struct ROMBuilder {
           
-    static func rom(prgROM: [UInt8],
-                           startingAt: UInt16,
-                           resetVectorInitialValue: UInt16? = nil,
-                           isNestest: Bool = false,
-                           logger: Logger?) -> (Addressable, BufferBox) {
+    static func rom(
+        prgROM: [UInt8],
+        startingAt: UInt16,
+        resetVectorInitialValue: UInt16? = nil,
+        isNestest: Bool = false,
+        logger: Logger?
+    ) -> (Addressable, BufferBox) {
+        
         var addressable: Addressable
         let bufferBox: BufferBox
         if isNestest {

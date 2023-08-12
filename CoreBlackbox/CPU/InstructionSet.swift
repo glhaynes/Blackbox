@@ -11,10 +11,10 @@ public struct InstructionSet {
     let instructionForOpcode: [UInt8: Instruction]
         
     init() {
-        instructionForOpcode = Dictionary(grouping: instructions) { $0.opcode }.compactMapValues { $0.first! }
+        instructionForOpcode = Dictionary(grouping: Self.instructions) { $0.opcode }.compactMapValues { $0.first! }
     }
 
-    private let instructions: [Instruction] = [
+    private static let instructions: [Instruction] = [
         
         // ADC:
         Instruction(mnemonic: .adc, opcode: 0x69, addressingMode: .immediate, size: 2, cycleCount: 2),

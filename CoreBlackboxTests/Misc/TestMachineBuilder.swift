@@ -21,7 +21,7 @@ enum TestMachineBuilder {
             return bus
             
         case .cpu6502:
-            let cpu = CPU6502(logger: logger)
+            let cpu = CPU6502(bus: nil, instructionDecoder: InstructionDecoder(), logger: logger)
             let bus = TestBus(cpu: cpu, memory: memory, logger: logger)
             cpu.bus = bus
             return bus

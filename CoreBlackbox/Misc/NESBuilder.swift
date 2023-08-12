@@ -35,7 +35,10 @@ public enum NESBuilder {
         case .m6502:
             cpu = M6502(isBCDEnabled: isRespectingDecimalMode, logger: loggers[.cpu])
         case .cpu6502:
-            cpu = CPU6502(isRespectingDecimalMode: isRespectingDecimalMode, logger: loggers[.cpu])
+            cpu = CPU6502(bus: nil,  // FIXME
+                          instructionDecoder: InstructionDecoder(),
+                          isRespectingDecimalMode: isRespectingDecimalMode,
+                          logger: loggers[.cpu])
         }
         
         let bus = NESBus(cpu: cpu,
