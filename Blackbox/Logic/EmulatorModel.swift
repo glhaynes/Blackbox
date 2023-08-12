@@ -17,11 +17,18 @@ final class EmulatorModel {
         case noCartridge
     }
     
+    private static let cpuKind = CPUKind.cpu6502
+    
     private static func buildBus(for cartridge: Cartridge?, nesControllers: [NESController], loggers: NESBuilder.Loggers = [:]) -> NESBus {
-        let bus = NESBuilder.bus(using: .m6502, cartridge: cartridge, isRespectingDecimalMode: false, loggers: loggers)
+        let bus = NESBuilder.bus(using: Self.cpuKind, cartridge: cartridge, isRespectingDecimalMode: false, loggers: loggers)
         bus.controllers = nesControllers
         bus.ppu.interruptRaiser = bus
         bus.cartridge?.setInterruptRaiser(bus)
+        
+        // FIXME: This probably shouldn't be here! If it's correct and only applies to `.cpu6502`, it should move to `CPU6502`
+        // (It doesn't seem to be necessary to get to the same point (line 139077) of DK… but still might be more correct for others
+        (bus.cpu as? CPU6502)?.processorState.p[.break] = true
+        
         return bus
     }
     
@@ -87,6 +94,7 @@ final class EmulatorModel {
         }
         
         // Doing these in batches of 90,000 because that's approximately how many it takes for a new frame.
+        // FIXME: Fix this number
         NESExecutor.run(bus, inBatchesOfSystemCycleCount: 90_000, stoppingAfterBatchIf: { bus in
             bus.ppu.hasNewDisplayValues
         })

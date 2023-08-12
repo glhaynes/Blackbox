@@ -25,7 +25,7 @@ extension ProcessorState {
             case carry = 0
         }
         
-        public private(set) var value: UInt8
+        public private(set) var value: UInt8  // FIXME: Probably need to add a setter that handles bit5 (at least) sets properly
 
         public init(integerLiteral value: UInt8) {
             self.value = value

@@ -12,7 +12,6 @@ public protocol CPU: InterruptRaiser, AnyObject {
     var processorState: ProcessorState { get }
     var cycleCount: UInt64 { get }
     func isInAnInfiniteLoop() -> Bool
-    func decodeInstruction() throws -> Instruction
     func setUpDMATransferToPPU(forPage page: UInt8)
     func tick()
 }

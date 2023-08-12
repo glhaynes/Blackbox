@@ -9,30 +9,18 @@
 import Foundation
 
 public enum NESExecutor {
-    
-    private static var totalSystemCycles: UInt64 = 0
     public static func run(_ bus: some Bus,
                            inBatchesOfSystemCycleCount cycleBatchCount: UInt64,
-                           stoppingAfterBatchIf stopIf: ((any Bus) -> Bool) = { _ in false }) {
+                           stoppingAfterBatchIf shouldStopAfterBatch: ((any Bus) -> Bool) = { _ in false }) {
         var stop = false
         while(!stop) {
             var cyclesThisRun: UInt64 = 0
-            while cyclesThisRun < cycleBatchCount /* * 3 */ {
+            while cyclesThisRun < cycleBatchCount {
                 bus.tick()
                 cyclesThisRun += 1
-                totalSystemCycles += 1
             }
             
-            stop = stopIf(bus) // Pass it the bus to inspect
-        }
-    }
-    
-    // Nothing uses this as of this writing
-    public static func run(_ bus: NESBus, forMaximumCycleCountOf maxCycleCount: UInt64) {
-        var cyclesThisRun: UInt64 = 0
-        while cyclesThisRun <= maxCycleCount {
-            bus.tick()
-            cyclesThisRun += 1
+            stop = shouldStopAfterBatch(bus)
         }
     }
 }
